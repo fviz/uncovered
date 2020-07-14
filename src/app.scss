@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue&display=swap');
+
+/* Flashlight Overlay */
+:root {
+  cursor: crosshair;
+  --cursorX: 50vw;
+  --cursorY: 50vh;
+}
+:root:before {
+  z-index: 1;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  pointer-events: none;
+  background: radial-gradient(
+                  circle 20vmax at var(--cursorX) var(--cursorY),
+                  rgba(0,0,0,0) 0%,
+                  rgba(0,0,0,.5) 60%,
+                  rgba(0,0,0,1) 100%
+  )
+}
+
+body {
+  background-color: black;
+  color: #c1c1c1;
+  font-family: 'Epilogue', sans-serif;
+}
+
+strong {
+  color: #c1c1c1 !important;
+}
+
+.subtitle {
+  color: inherit;
+}
+
+.title {
+  color: inherit;
+}
+
+img {
+  max-width: 500px  ;
+}
+
+.artworks > div {
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: 30%   1fr;
+  grid-template-areas: "workImage workText";
+}
+
+.workImage { grid-area: workImage; width: 100% }
+.workImage > img { width: 100%; }
+.workImage > video { width: 100%; }
+.workText { grid-area: workText }
+.workTextIn {
+  width: 300px;
+}
+
+@media (min-width: 917px) {
+  .artworks > div:nth-child(even) {
+    grid-template-areas: "workText workImage";
+    grid-template-columns: 1fr 30%;
+  }
+
+
+  .artworks > div:nth-child(even) > .workText {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+  }
+}
+
+@media (max-width: 917px) {
+
+  .uncovered-header {
+    padding-top: 50vh;
+  }
+
+  .artworks {
+    padding-bottom: 33vh;
+  }
+
+  .artworks > div {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "workImage" "workText";
+    margin-bottom: 25vh;
+  }
+
+  :root:before {
+    background: radial-gradient(
+                    circle 40vmax at 50vw 50vh,
+                    rgba(0,0,0,0) 0%,
+                    rgba(0,0,0,.5) 60%,
+                    rgba(0,0,0,1) 100%
+    )
+  }
+}
